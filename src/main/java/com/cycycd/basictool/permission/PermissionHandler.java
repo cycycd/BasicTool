@@ -1,8 +1,10 @@
 package com.cycycd.basictool.permission;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -14,17 +16,17 @@ import java.util.Map;
 
 public class PermissionHandler {
     private List<String> perm_list;
-    private Context context;
+    private Activity activity;
     public PermissionHandler()
     {
         perm_list=new ArrayList<>();
     }
-    public PermissionHandler(Context c)
+    public PermissionHandler(Activity c)
     {
         this();
-        this.context=c;
+        this.activity=c;
     }
-    public PermissionHandler(List<String> list, Context c) {
+    public PermissionHandler(List<String> list, Activity c) {
         this(c);
         Collections.copy(perm_list,list);
     }
@@ -42,7 +44,7 @@ public class PermissionHandler {
         Map<String,Boolean> m=new HashMap<>();
         for(var t:perm_list)
         {
-            if (ContextCompat.checkSelfPermission(context, t) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(activity, t) != PackageManager.PERMISSION_GRANTED) {
                 m.put(t,false);
             }
             else {
@@ -50,5 +52,21 @@ public class PermissionHandler {
             }
         }
         return m;
+    }
+    public List<String> checknon()
+    {
+        List<String> m=new ArrayList<>();
+        for(var t:perm_list)
+        {
+            if (ContextCompat.checkSelfPermission(activity, t) != PackageManager.PERMISSION_GRANTED) {
+                m.add(t);
+            }
+        }
+        return m;
+    }
+    public void apply(int requstCode)
+    {
+        List<String> t=checknon();
+        ActivityCompat.requestPermissions(activity, t.toArray(new String[0]), requstCode);
     }
 }

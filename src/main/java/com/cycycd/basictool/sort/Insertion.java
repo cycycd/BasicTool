@@ -1,7 +1,5 @@
 package com.cycycd.basictool.sort;
 
-import com.cycycd.basictool.buildlib.Sort;
-
 import java.util.List;
 
 public class Insertion extends Sort {

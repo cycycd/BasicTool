@@ -1,6 +1,6 @@
 package com.cycycd.basictool.sort;
 
-import com.cycycd.basictool.build.Sort;
+import com.cycycd.basictool.buildlib.Sort;
 
 import java.util.List;
 

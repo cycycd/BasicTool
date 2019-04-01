@@ -17,6 +17,7 @@ import java.util.Map;
 public class PermissionHandler {
     private List<String> perm_list;
     private Activity activity;
+    //构造函数层级递进
     public PermissionHandler()
     {
         perm_list=new ArrayList<>();
@@ -30,6 +31,7 @@ public class PermissionHandler {
         this(c);
         Collections.copy(perm_list,list);
     }
+
     public void add(String... perm)
     {
         perm_list.addAll(Arrays.asList(perm));

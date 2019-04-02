@@ -32,10 +32,13 @@ public class PermissionHandler {
         Collections.copy(perm_list,list);
     }
     //待完成 PermissionRequest 中调用方法检测权限是否申请成功
+
+    //添加权限队列
     public void add(String... perm)
     {
         perm_list.addAll(Arrays.asList(perm));
     }
+
     //clear all permission
     public void clear()
     {
@@ -69,9 +72,19 @@ public class PermissionHandler {
         return m;
     }
     //申请权限
+    /**
+     * @param requestCode same in method onRequestPermissionsResult()
+     */
     public void apply(int requestCode)
     {
         List<String> t=toApply();
         ActivityCompat.requestPermissions(activity, t.toArray(new String[0]), requestCode);
+    }
+    /**
+     * requestCode default 1
+     */
+    public void apply()
+    {
+        this.apply(1);
     }
 }

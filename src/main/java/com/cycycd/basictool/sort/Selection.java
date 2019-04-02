@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Selection extends Sort {
     public static <S extends Comparable<S>> void sort(S[] a) {
-        var N = a.length;
+        int N = a.length;
         int min;
         for (int i = 0; i < N; i++) {
             min = i;
@@ -18,7 +18,7 @@ public class Selection extends Sort {
         }
     }
     public static <S extends Comparable<S>> void sort(List<S> a) {
-        var N = a.size();
+        int N = a.size();
         int min;
         for (int i = 0; i < N; i++) {
             min = i;

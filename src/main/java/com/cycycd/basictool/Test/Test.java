@@ -20,14 +20,14 @@ public class Test {
     }
     private static void show(Integer[] a)
     {
-        for (var t:a) {
+        for (int t:a) {
             System.out.print(t+" ");
         }
         System.out.println();
     }
-    private static void show(List a)
+    private static void show(List<Person> a)
     {
-        for (var t:a) {
+        for (Person t:a) {
             System.out.print(t+" ");
         }
         System.out.println();

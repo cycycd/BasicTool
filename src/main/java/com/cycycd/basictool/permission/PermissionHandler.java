@@ -44,7 +44,7 @@ public class PermissionHandler {
     public Map<String,Boolean> check()
     {
         Map<String,Boolean> m=new HashMap<>();
-        for(var t:perm_list)
+        for(String t:perm_list)
         {
             if (ContextCompat.checkSelfPermission(activity, t) != PackageManager.PERMISSION_GRANTED) {
                 m.put(t,false);
@@ -58,7 +58,7 @@ public class PermissionHandler {
     public List<String> checknon()
     {
         List<String> m=new ArrayList<>();
-        for(var t:perm_list)
+        for(String t:perm_list)
         {
             if (ContextCompat.checkSelfPermission(activity, t) != PackageManager.PERMISSION_GRANTED) {
                 m.add(t);

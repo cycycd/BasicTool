@@ -31,7 +31,7 @@ public class PermissionHandler {
         this(c);
         Collections.copy(perm_list,list);
     }
-
+    //待完成 PermissionRequest 中调用方法检测权限是否申请成功
     public void add(String... perm)
     {
         perm_list.addAll(Arrays.asList(perm));
@@ -41,6 +41,7 @@ public class PermissionHandler {
     {
         perm_list.clear();
     }
+    //返回权限列表中的拥有情况
     public Map<String,Boolean> check()
     {
         Map<String,Boolean> m=new HashMap<>();
@@ -55,7 +56,8 @@ public class PermissionHandler {
         }
         return m;
     }
-    public List<String> checknon()
+    //返回权限列表中尚未拥有的权限
+    public List<String> toApply()
     {
         List<String> m=new ArrayList<>();
         for(String t:perm_list)
@@ -66,9 +68,10 @@ public class PermissionHandler {
         }
         return m;
     }
-    public void apply(int requstCode)
+    //申请权限
+    public void apply(int requestCode)
     {
-        List<String> t=checknon();
-        ActivityCompat.requestPermissions(activity, t.toArray(new String[0]), requstCode);
+        List<String> t=toApply();
+        ActivityCompat.requestPermissions(activity, t.toArray(new String[0]), requestCode);
     }
 }

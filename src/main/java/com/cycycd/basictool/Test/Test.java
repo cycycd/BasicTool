@@ -1,5 +1,6 @@
 package com.cycycd.basictool.Test;
 
+import com.cycycd.basictool.sort.Insertion;
 import com.cycycd.basictool.sort.Selection;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Test {
         a.add(new Person("李四",21));
         a.add(new Person("测试",19));
         a.add(new Person("六小龄童",27));
-        Selection.sort(a);
+        Insertion.sort(a);
         show(a);
     }
     private static void show(Integer[] a)

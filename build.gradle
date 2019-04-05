@@ -42,7 +42,7 @@ publish {
     repoName = 'AndroidLib'//要传到的maven的名字。你可能有多个maven，要传哪个写哪个。
     groupId = 'com.cycycd'//jcenter上的路径
     artifactId = 'basictool'//项目名称
-    publishVersion = '1.0.0'//版本号
+    publishVersion = '1.0.1'//版本号
     desc = 'A Tool collection for Java/Android Project'//描述，不重要
     website = 'https://github.com/cycycd/BasicTool'//网站，不重要；尽量模拟github上的地址
 }

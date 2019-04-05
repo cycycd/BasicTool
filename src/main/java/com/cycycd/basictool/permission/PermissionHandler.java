@@ -41,13 +41,18 @@ public class PermissionHandler {
         perm_list.addAll(Arrays.asList(perm));
     }
 
-    //clear all permission
-    public void clear()
+    //清除所有权限
+    public void clearAll()
     {
         perm_list.clear();
     }
-    //返回权限列表中的拥有情况
-    public Map<String,Boolean> check()
+    //清除PermissionHandler队列中已获取的权限
+    public void clear()
+    {
+        this.perm_list=getNotOwnedPermission();
+    }
+    //返回PermissionHandler中的权限队列的拥有情况
+    public Map<String,Boolean> checkPermission()
     {
         Map<String,Boolean> m=new HashMap<>();
         for(String t:perm_list)
@@ -61,11 +66,13 @@ public class PermissionHandler {
         }
         return m;
     }
-    //返回权限列表中尚未拥有的权限
-    public List<String> toApply()
+
+
+    //返回权限列表中尚未拥有的权限（底层实现）
+    private List<String> checkNotOwnedPermission(List<String> permissions)
     {
         List<String> m=new ArrayList<>();
-        for(String t:perm_list)
+        for(String t:permissions)
         {
             if (ContextCompat.checkSelfPermission(activity, t) != PackageManager.PERMISSION_GRANTED) {
                 m.add(t);
@@ -73,13 +80,40 @@ public class PermissionHandler {
         }
         return m;
     }
+    //返回权限列表中已经拥有的权限
+    public List<String> checkOwnedPermission(List<String> permissions)
+    {
+        List<String> m=new ArrayList<>();
+        for(String t:permissions)
+        {
+            if (ContextCompat.checkSelfPermission(activity, t) == PackageManager.PERMISSION_GRANTED) {
+                m.add(t);
+            }
+        }
+        return m;
+    }
+
+
+    //返回PermissionHandler队列中尚未拥有的权限
+    public List<String> getNotOwnedPermission()
+    {
+        return checkNotOwnedPermission(this.perm_list);
+    }
+    //返回参数中尚未拥有的权限 不影响PermissionHandler队列
+    public List<String> getNotOwnedPermission(String [] permissions)
+    {
+        return checkNotOwnedPermission(Arrays.asList(permissions));
+    }
+
+
     //申请权限
     /**
      * @param requestCode same in method onRequestPermissionsResult()
+     * 申请尚未拥有的权限，通过toApply取得等待申请列表
      */
     public void apply(int requestCode)
     {
-        List<String> t=toApply();
+        List<String> t=getNotOwnedPermission();
         ActivityCompat.requestPermissions(activity, t.toArray(new String[0]), requestCode);
     }
     /**

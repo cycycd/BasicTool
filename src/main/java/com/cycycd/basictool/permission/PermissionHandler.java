@@ -29,6 +29,10 @@ public class PermissionHandler {
         this(c);
         Collections.copy(perm_list,list);
     }
+    public PermissionHandler(String [] list, Activity c) {
+        this(c);
+        perm_list.addAll(Arrays.asList(list));
+    }
     //待完成 PermissionRequest 中调用方法检测权限是否申请成功
 
     //添加权限队列

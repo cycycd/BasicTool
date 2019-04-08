@@ -20,17 +20,17 @@ public class PermissionHandler {
     {
         perm_list=new ArrayList<>();
     }
-    public PermissionHandler(Activity c)
+    public PermissionHandler(Activity activity)
     {
         this();
-        this.activity=c;
+        this.activity=activity;
     }
-    public PermissionHandler(List<String> list, Activity c) {
-        this(c);
+    public PermissionHandler(List<String> list, Activity activity) {
+        this(activity);
         Collections.copy(perm_list,list);
     }
-    public PermissionHandler(String [] list, Activity c) {
-        this(c);
+    public PermissionHandler(String [] list, Activity activity) {
+        this(activity);
         perm_list.addAll(Arrays.asList(list));
     }
     //待完成 PermissionRequest 中调用方法检测权限是否申请成功

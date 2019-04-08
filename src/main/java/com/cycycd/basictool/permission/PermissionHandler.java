@@ -34,7 +34,10 @@ public class PermissionHandler {
         perm_list.addAll(Arrays.asList(list));
     }
     //待完成 PermissionRequest 中调用方法检测权限是否申请成功
+    public void permissionRequest()
+    {
 
+    }
     //添加权限队列
     public void add(String... perm)
     {

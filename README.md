@@ -1,7 +1,8 @@
 # BasicTool
 A Tool collection for Java/Android Project
 
-## Gradle
+## USE
+### Gradle
 root build.gradle
 ```
 buildscript {
